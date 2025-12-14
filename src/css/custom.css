@@ -3,35 +3,141 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import "./heimu.css";
+@import "./marker.css";
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #7799cc;
+  --ifm-color-primary-dark: #5f87c3;
+  --ifm-color-primary-darker: #537ebe;
+  --ifm-color-primary-darkest: #3d66a4;
+  --ifm-color-primary-light: #8eaad4;
+  --ifm-color-primary-lighter: #9ab3d9;
+  --ifm-color-primary-lightest: #bdcde6;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+[data-theme="dark"] {
+  --ifm-color-primary: #7799cc;
+  --ifm-color-primary-dark: #5f87c3;
+  --ifm-color-primary-darker: #537ebe;
+  --ifm-color-primary-darkest: #3d66a4;
+  --ifm-color-primary-light: #8eaad4;
+  --ifm-color-primary-lighter: #9ab3d9;
+  --ifm-color-primary-lightest: #bdcde6;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Center navbar__brand */
+/* 中置标题栏里面的标题 */
 .navbar__brand {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* 侧边栏hover圆角效果 */
+.menu__link,
+.menu__list-item-collapsible {
+  border-radius: 1rem;
+  position: relative;
+  z-index: 0;
+  transition: text-shadow 0.2s ease;
+}
+
+.menu__link:hover,
+.menu__list-item-collapsible:hover,
+.menu__link--active,
+.menu__list-item-collapsible--active {
+  background: none;
+  text-shadow: 0 0 2px var(--ifm-color-primary-light);
+}
+
+.menu__link::before,
+.menu__list-item-collapsible::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s;
+  mask-image: linear-gradient(to right, black, transparent);
+  -webkit-mask-image: linear-gradient(to right, black, transparent);
+}
+
+.menu__link:hover::before,
+.menu__list-item-collapsible:hover::before {
+  background-color: var(--ifm-menu-color-background-hover);
+  opacity: 1;
+}
+
+.menu__link--active::before,
+.menu__list-item-collapsible--active::before {
+  background-color: var(--ifm-menu-color-background-active);
+  opacity: 1;
+}
+
+/* 移除侧边栏右侧分隔线 */
+.theme-doc-sidebar-container {
+  border-right: none !important;
+}
+
+/* 顶栏毛玻璃背景 */
+.navbar {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: rgba(36, 37, 38, 0.6);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 面包屑导航背景去除 */
+.breadcrumbs__item--active,
+.breadcrumbs__link {
+  background: none;
+}
+
+/* 顶栏链接hover效果 */
+.navbar__link--active,
+.navbar__link:hover {
+  text-shadow: 0 0 2px var(--ifm-color-primary-light);
+}
+
+/* 文章标题效果 */
+.markdown h1:first-child {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  text-shadow: #5b5d5f70 3px 3px 3px;
+}
+
+.markdown h1:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.15em;
+  background-color: currentColor;
+  margin-left: 0.1em;
+  vertical-align: -0.15em;
+  animation: blink 1s step-end infinite;
+  box-shadow: 3px 3px 3px #5b5d5f70;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }

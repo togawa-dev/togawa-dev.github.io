@@ -1,0 +1,8 @@
+{
+  "position": 6,
+  "label": "API",
+  "key": "api",
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red"
+}

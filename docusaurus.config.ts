@@ -1,11 +1,11 @@
-import { themes as prismThemes } from "prism-react-renderer";
-import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type { Config } from "@docusaurus/types";
+import { themes as prismThemes } from "prism-react-renderer";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "SAKIKO",
+  title: "sakiko",
   tagline: "A cross-platform, scalable chatbot framework",
   favicon: "img/favicon.ico",
 
@@ -25,7 +25,7 @@ const config: Config = {
   organizationName: "togawa-dev", // Usually your GitHub org/user name.
   projectName: "@togawa-dev/sakiko", // Usually your repo name.
 
-  onBrokenLinks: "throw",
+  onBrokenLinks: "log",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -44,8 +44,9 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/togawa-dev/togawa-dev.github.io/tree/main/",
         },
+        blog: false,
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -80,7 +81,7 @@ const config: Config = {
         },
         {
           type: "dropdown",
-          label: "Sakiko 生态项目",
+          label: "Sakiko 生态",
           position: "right",
           items: [
             {
@@ -108,14 +109,30 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "渐进式指南",
+              to: "/docs/progressive",
+            },
+            {
+              label: "社区内容目录",
+              to: "/docs/community",
+            },
+            {
+              label: "Umiri",
+              to: "/docs/umiri",
+            },
+            {
+              label: "Uika",
+              to: "/docs/uika",
+            },
+            {
+              label: "Mutsumi",
+              to: "/docs/mutsumi",
             },
           ],
         },
@@ -123,16 +140,12 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "Issue",
+              href: "https://github.com/togawa-dev/sakiko/issues",
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "X",
-              href: "https://x.com/docusaurus",
+              label: "Discussions",
+              href: "https://github.com/togawa-dev/sakiko/discussions",
             },
           ],
         },
@@ -140,17 +153,17 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "Blog",
-              to: "/blog",
+              label: "GitHub",
+              href: "https://github.com/togawa-dev/sakiko",
             },
             {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              label: "Orgainzation",
+              href: "https://github.com/togawa-dev",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} The Sakiko Project. Built with Docusaurus & ♥️.`,
+      copyright: `残りの人生、わたくしに下さいと。<br><br>Copyright © ${new Date().getFullYear()} The Sakiko Project. All rights reserved. <br>Built with Docusaurus & ♥️.`,
     },
     prism: {
       theme: prismThemes.github,

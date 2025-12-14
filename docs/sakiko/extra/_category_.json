@@ -1,0 +1,8 @@
+{
+  "position": 4,
+  "label": "高级",
+  "key": "extra",
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red"
+}
