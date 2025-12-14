@@ -4,6 +4,8 @@ slug: /
 sidebar_position: 1
 ---
 
+![sakiko](https://socialify.git.ci/togawa-dev/sakiko/image?description=1&font=Raleway&language=1&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F215699809&name=1&owner=1&pattern=Signal&stargazers=1&theme=Auto)
+
 `Sakiko` 是一个简单、跨平台、可拓展的异步 TypeScript 聊天机器人框架，以开发者的体验优先，最小仅需单个 `index.ts` 即可启动。
 
 The Sakiko Project 现由以下项目组成：

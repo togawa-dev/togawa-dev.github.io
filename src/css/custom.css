@@ -5,6 +5,7 @@
  */
 @import "./heimu.css";
 @import "./marker.css";
+@import "./code.css";
 
 /* You can override the default Infima variables here. */
 :root {

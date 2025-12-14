@@ -64,7 +64,7 @@ const config: Config = {
       title: "Togawa Dev",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/saki.png",
       },
       items: [
         {
@@ -163,11 +163,12 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `残りの人生、わたくしに下さいと。<br><br>Copyright © ${new Date().getFullYear()} The Sakiko Project. All rights reserved. <br>Built with Docusaurus & ♥️.`,
+      copyright: `残りの人生、わたくしに下さいと。<br><br>Copyright © ${new Date().getFullYear()} The Sakiko Project. All rights reserved. <br>Built with <a href="https://docusaurus.io"><img src="/img/docusaurus.svg" alt="Docusaurus" style="height:1.2em;vertical-align:text-bottom;" /> Docusaurus</a> & ♥️`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["bash"],
     },
   } satisfies Preset.ThemeConfig,
 };

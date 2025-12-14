@@ -1,0 +1,169 @@
+---
+title: 安装
+slug: /install
+sidebar_position: 2
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Sakiko 支持在 Node.js 和 Bun 上运行，直接使用你喜欢的包管理器安装即可。
+
+<Tabs>
+    <TabItem value="npm" label="npm">
+    ```bash
+    npm install @togawa-dev/sakiko 
+    ```
+    </TabItem>
+    <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add @togawa-dev/sakiko 
+    ```
+    </TabItem>
+    <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm add @togawa-dev/sakiko 
+    ```
+    </TabItem>
+    <TabItem value="bun" label="bun">
+    ```bash
+    bun add @togawa-dev/sakiko 
+    ```
+    </TabItem>
+</Tabs>
+
+## 启动 Sakiko
+
+Sakiko 并不需要项目脚手架，你可以在任何一个 TypeScript 程序中启动 Sakiko。
+
+大部分情况下，用一个 `index.ts` 脚本来组织 Sakiko 机器人是最简洁也最舒适的方式：
+
+<Tabs>
+    <TabItem value="独立运行" label="独立运行">
+    ```typescript
+    /* index.ts */
+    import { sakiko } from "@togawa-dev/sakiko";
+
+    sakiko.init();
+    await sakiko.run(); // run() 会自动在启动完成后保持主线程运行
+    ```
+    </TabItem>
+    <TabItem value="在现有的程序中运行" label="在现有的程序中运行">
+    ```typescript
+    /* some-code.ts */
+    import { sakiko } from "@togawa-dev/sakiko";
+
+    /* ...你的程序代码 */
+
+    sakiko.init();
+    await sakiko.runWithoutBlock(); 
+
+    /* ...其他程序代码 */
+    ```
+    </TabItem>
+</Tabs>
+
+:::tip
+如果你需要在现有的程序中运行 Sakiko，请使用 `runWithoutBlock()` 方法以避免阻塞主线程。
+
+相应的，你需要让程序保持运行状态，否则 Sakiko 会随着程序完成/退出而停止工作。
+:::
+
+现在，你可以运行 `index.ts` 脚本或者你的程序来启动 Sakiko 了，如果在命令行中输出了这样的信息：
+
+```plaintext
+
+    ██                                  ██
+   ██            ▄▄     ▀▀  ▄▄           ██
+  ██ ▄█▀▀▀  ▀▀█▄ ██ ▄█▀ ██  ██ ▄█▀ ▄███▄  ██
+ ██  ▀███▄ ▄█▀██ ████   ██  ████   ██ ██   ██
+██   ▄▄▄█▀ ▀█▄██ ██ ▀█▄ ██▄ ██ ▀█▄ ▀███▀    ██
+
+█████ Sakiko vx.x.x
+A modular chatbot framework project for TypeScript
+
+- For more information or documents about the project, see https://togawa-dev.github.io/docs/
+- @togawa-dev 2025 | MIT License
+
+12.14 18:30:10 [INFO_] [sakiko] sakiko initialized successfully.
+12.14 18:30:10 [INFO_] [sakiko] starting sakiko...
+12.14 18:30:10 [INFO_] [sakiko] done. (took 1ms)
+
+```
+
+就表示 Sakiko 已经成功启动了！
+
+## 传入配置项
+
+你可以在 `init()` 执行之前，通过 `withConfig()` 方法传入配置项：
+
+```typescript
+import { sakiko } from "@togawa-dev/sakiko";
+
+sakiko.withConfig({
+    logLevel: 3, // 设置日志等级为 3（Info）
+    // 其他配置项...
+});
+
+sakiko.init();
+await sakiko.run();
+```
+
+通过 `withConfig()` 方法传入的配置项拥有所有注入配置项方式中最高的优先级，会覆盖掉其他方式传入的同名配置项。
+
+:::note
+在 Sakiko 完成初始化（即调用 `init()` 方法）之后，Sakiko 实例中存储的配置项将会被冻结，无法再被修改。
+
+因此，请确保在调用 `init()` 之前完成所有配置项的注入工作。
+
+如果你更喜欢通过配置文件来管理 Sakiko 的配置项，可以使用 `Uika` 的 `conf-manage` 模块，详见 [Uika / 配置管理](/docs/nothing)。
+:::
+
+## 安装插件 / 适配器
+
+在初始化流程完成之后，你可以通过 `install()` 方法来安装插件 / 适配器，我们以 Onebot V11 协议的适配器 `sakiko-adapter-onebot-v11` 适配器为例：
+
+首先，使用包管理器安装适配器：
+<Tabs>
+    <TabItem value="npm" label="npm">
+    ```bash
+    npm install @togawa-dev/sakiko-adapter-onebot-v11
+    ```
+    </TabItem>
+    <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add @togawa-dev/sakiko-adapter-onebot-v11
+    ```
+    </TabItem>
+    <TabItem value="pnpm" label="pnpm">
+    ```bash
+    pnpm add @togawa-dev/sakiko-adapter-onebot-v11
+    ```
+    </TabItem>
+    <TabItem value="bun" label="bun">
+    ```bash
+    bun add @togawa-dev/sakiko-adapter-onebot-v11
+    ```
+    </TabItem>
+</Tabs>
+
+然后，在你的 `index.ts` 脚本中引入并安装适配器：
+
+```typescript
+import { sakiko } from "@togawa-dev/sakiko";
+import { OB11Adapter } from "@togawa-dev/sakiko-adapter-onebot-v11";
+
+sakiko.init();
+
+await sakiko.install(OB11Adapter);
+
+await sakiko.run();
+```
+
+当适配器安装完成之后，启动 Sakiko 时应该会看到这样的日志输出：
+
+```plaintext
+12.14 18:36:10 [INFO_] [sakiko] plugin "adapter-onebot-v11" vx.x.x installed successfully.
+```
+
+这样，Sakiko 就已经成功安装并启动了 OneBot v11 适配器，可以与协议端进行交互了。

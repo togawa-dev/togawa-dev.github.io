@@ -1,0 +1,40 @@
+/* 字体设置 */
+.theme-code-block code,
+.markdown code {
+  font-family: "Maple Mono", monospace;
+}
+
+/* 代码块容器：增加阴影 */
+.theme-code-block {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: var(--ifm-pre-border-radius);
+  margin-bottom: var(--ifm-leading);
+  position: relative;
+  /* 确保圆点不被遮挡，同时保持圆角 */
+  overflow: hidden;
+}
+
+/* 代码块内容：增加顶部内边距以容纳 macOS 小圆点 */
+.theme-code-block pre {
+  padding-top: 40px !important;
+}
+
+/* 代码块：添加 macOS 风格的小圆点 */
+.theme-code-block::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  width: 12px;
+  height: 12px;
+  background-color: #ff5f56;
+  border-radius: 50%;
+  box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 适配 Docusaurus 的行号样式 (如果启用) */
+/* Docusaurus 的行号通常是 .token-line 里面的内容，或者通过 CSS counter 实现 */
+/* 这里主要确保整体布局协调 */
