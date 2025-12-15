@@ -171,6 +171,11 @@ const config: Config = {
       additionalLanguages: ["bash"],
     },
   } satisfies Preset.ThemeConfig,
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 export default config;

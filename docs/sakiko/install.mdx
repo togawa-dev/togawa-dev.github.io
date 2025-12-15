@@ -93,6 +93,12 @@ A modular chatbot framework project for TypeScript
 
 就表示 Sakiko 已经成功启动了！
 
+:::tip
+如果你发现上面的代码块里面的 ASCII 字符画看起来很诡异，那可能是因为你没有配置浏览器里用的等宽字体。
+
+如果你的终端环境也没有使用等宽字体，但是你不想看一个乱七八糟的 ASCII 字符画，你可以在[配置](/docs/config)中传入 `noAsciiArt: true` 来禁用它
+:::
+
 ## 传入配置项
 
 你可以在 `init()` 执行之前，通过 `withConfig()` 方法传入配置项：
@@ -167,3 +173,9 @@ await sakiko.run();
 ```
 
 这样，Sakiko 就已经成功安装并启动了 OneBot v11 适配器，可以与协议端进行交互了。
+
+## 在这之后...?
+
+如果你是 TypeScript 领域大神，直接从文档的后续章节了解 Sakiko 的大致设计模式即可开始开发。
+
+或者，你也可以看看[渐进式指南](/docs/progressive)，逐步了解 Sakiko 的使用方法。
